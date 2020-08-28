@@ -1,17 +1,9 @@
 const expect = require('chai').expect;
+var checkBPM = require('./checkBPM.js');
+var checkRespRate = require('./checkRespRate.js');
+var checkSPO2 = require('./checkSPO2.js');
 
-function vitalsAreOk(bpm, spo2, respRate) {
-    if(bpm < 70 || bpm > 150) {
-        return false;
-    } else if(spo2 < 90) {
-        return false;
-    } else if(respRate < 30 || respRate > 95) {
-        return false;
-    }
-    return true;
-}
-
-expect(vitalsAreOk(100, 95, 70)).to.be.true;
-expect(vitalsAreOk(50, 95, 70)).to.be.false;
+expect(checkBPM(100) && checkSPO2(95) && checkRespRate(70)).to.be.true;
+expect(checkBPM(50) && checkSPO2(95) && checkRespRate(70)).to.be.false;
 
 console.log('checker is done');
